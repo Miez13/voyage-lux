@@ -212,7 +212,7 @@ header
 
 .header-area .main-nav .logo {
   line-height: 80px;
-  color: #fff;
+  color: #000;
   font-size: 32px;
   font-weight: 800;
   text-transform: uppercase;
@@ -223,10 +223,16 @@ header
   transition: all 0.3s ease 0s;
 }
 
-.header-area .main-nav .logo em {
+
+.header-area .main-nav .logo span {
   font-style: normal;
-  color: #ed563b;
+  color: #dfdfdf;
   font-weight: 900;
+}
+
+.header-area .main-nav .logo .img-logo {
+  width: 3rem;
+  margin-left: .5rem;
 }
 
 .header-area .main-nav .nav {
@@ -242,12 +248,13 @@ header
   z-index: 999;
 }
 
-.header-area .main-nav .nav li {
+.header-area .main-nav .nav .nav-item {
   padding-left: 20px;
   padding-right: 20px;
+  color: #ffffff;
 }
 
-.header-area .main-nav .nav li a {
+.header-area .main-nav .nav .nav-item a {
   display: block;
   font-weight: 500;
   font-size: 13px;
