@@ -9,6 +9,8 @@
     <h1>Listings</h1>
     <button onclick="window.location.href='listings.php?view=1'">View Listings</button>
     <button onclick="window.location.href='addListings.php'">Add Listing</button>
+    <button onclick="window.location.href='reviews.php'">View Reviews</button>
+    <button onclick="window.location.href='reservations.php'">Make Reservation</button>
     <br><br>
     <?php
     include 'db_connect.php';
