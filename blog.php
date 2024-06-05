@@ -42,23 +42,23 @@
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="index.html" class="logo">Vacation Rental<em> Website</em></a>
+                        <a href="index.php" class="logo">Vacation Rental<em> Website</em></a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="vacations.html">Vacations</a></li>
-                            <li><a href="blog.html" class="active">Blog</a></li>
+                            <li><a href="index.php">Home</a></li>
+                            <li><a href="vacations.php">Vacations</a></li>
+                            <li><a href="blog.php" class="active">Blog</a></li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>
                               
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item"  href="about.html">About Us</a>
-                                    <a class="dropdown-item" href="testimonials.html">Testimonials</a>
-                                    <a class="dropdown-item" href="terms.html">Terms</a>
+                                    <a class="dropdown-item"  href="about.php">About Us</a>
+                                    <a class="dropdown-item" href="testimonials.php">Testimonials</a>
+                                    <a class="dropdown-item" href="terms.php">Terms</a>
                                 </div>
                             </li>
-                            <li><a href="contact.html">Contact</a></li> 
+                            <li><a href="contact.php">Contact</a></li> 
                         </ul>        
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -102,7 +102,7 @@
 
                         <p>Phasellus convallis mauris sed elementum vulputate. Donec posuere leo sed dui eleifend hendrerit. Sed suscipit suscipit erat, sed vehicula ligula. Aliquam ut sem fermentum sem tincidunt lacinia gravida aliquam nunc. Morbi quis erat imperdiet, molestie nunc ut, accumsan diam.</p>
                         <div class="main-button">
-                            <a href="blog-details.html">Continue Reading</a>
+                            <a href="blog-details.php">Continue Reading</a>
                         </div>
                       </article>
 
@@ -115,7 +115,7 @@
                         <p><i class="fa fa-user"></i> John Doe &nbsp;|&nbsp; <i class="fa fa-calendar"></i> 27.07.2020 10:10 &nbsp;|&nbsp; <i class="fa fa-comments"></i>  15 comments</p>
                         <p>Integer dapibus, est vel dapibus mattis, sem mauris luctus leo, ac pulvinar quam tortor a velit. Praesent ultrices erat ante, in ultricies augue ultricies faucibus. Nam tellus nibh, ullamcorper at mattis non, rhoncus sed massa. Cras quis pulvinar eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
                         <div class="main-button">
-                            <a href="blog-details.html">Continue Reading</a>
+                            <a href="blog-details.php">Continue Reading</a>
                         </div>
                       </article>
 
@@ -128,7 +128,7 @@
                         <p><i class="fa fa-user"></i> John Doe &nbsp;|&nbsp; <i class="fa fa-calendar"></i> 27.07.2020 10:10 &nbsp;|&nbsp; <i class="fa fa-comments"></i>  15 comments</p>
                         <p>Fusce laoreet malesuada rhoncus. Donec ultricies diam tortor, id auctor neque posuere sit amet. Aliquam pharetra, augue vel cursus porta, nisi tortor vulputate sapien, id scelerisque felis magna id felis. Proin neque metus, pellentesque pharetra semper vel, accumsan a neque.</p>
                         <div class="main-button">
-                            <a href="blog-details.html">Continue Reading</a>
+                            <a href="blog-details.php">Continue Reading</a>
                         </div>
                       </article>
                     </section>
@@ -147,21 +147,21 @@
 
                     <ul>
                         <li>
-                            <p><a href="blog-details.html">Dolorum corporis ullam, reiciendis inventore est repudiandae</a></p>
+                            <p><a href="blog-details.php">Dolorum corporis ullam, reiciendis inventore est repudiandae</a></p>
                             <small><i class="fa fa-user"></i> John Doe &nbsp;|&nbsp; <i class="fa fa-calendar"></i> 27.07.2020 10:10</small>
                         </li>
 
                         <li><br></li>
 
                         <li>
-                            <p><a href="blog-details.html">Culpa ab quasi in rerum dolorum impedit expedita</a></p>
+                            <p><a href="blog-details.php">Culpa ab quasi in rerum dolorum impedit expedita</a></p>
                             <small><i class="fa fa-user"></i> John Doe &nbsp;|&nbsp; <i class="fa fa-calendar"></i> 27.07.2020 10:10</small>
                         </li>
 
                         <li><br></li>
 
                         <li>
-                          <p><a href="blog-details.html">Explicabo soluta corrupti dolor doloribus optio dolorum</a></p>
+                          <p><a href="blog-details.php">Explicabo soluta corrupti dolor doloribus optio dolorum</a></p>
 
                           <small><i class="fa fa-user"></i> John Doe &nbsp;|&nbsp; <i class="fa fa-calendar"></i> 27.07.2020 10:10</small>
                         </li>

@@ -42,23 +42,23 @@
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="index.html" class="logo">voyagelux<em> by zen corp</em></a>
+                        <a href="index.php" class="logo">voyagelux<em> by zen corp</em></a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="nav-item"><a href="index.html">Home</a></li>
-                            <li class="nav-item"><a href="vacations.html">Listings</a></li>
-                            <li class="nav-item"><a href="testimonials.html">Reviews</a></li>
-                            <li class="nav-item"><a href="about.html">About Us</a></a></li>
-                            <li class="nav-item"><a href="contact.html">Contact</a></li> 
-                         <!--<li><a href="blog.html">Blog</a></li>
+                            <li class="nav-item"><a href="index.php">Home</a></li>
+                            <li class="nav-item"><a href="vacations.php">Listings</a></li>
+                            <li class="nav-item"><a href="testimonials.php">Reviews</a></li>
+                            <li class="nav-item"><a href="about.php">About Us</a></a></li>
+                            <li class="nav-item"><a href="contact.php">Contact</a></li> 
+                         <!--<li><a href="blog.php">Blog</a></li>
                          <li class="dropdown">
                              <a class="dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>
                            
                              <div class="dropdown-menu">
-                                 <a class="dropdown-item active"  href="about.html">About Us</a>
-                                 <a class="dropdown-item" href="testimonials.html">Testimonials</a>
-                                 <a class="dropdown-item" href="terms.html">Terms</a>
+                                 <a class="dropdown-item active"  href="about.php">About Us</a>
+                                 <a class="dropdown-item" href="testimonials.php">Testimonials</a>
+                                 <a class="dropdown-item" href="terms.php">Terms</a>
                              </div>
                          </li>-->           
                         <a class='menu-trigger'>
@@ -149,7 +149,7 @@
                         <h2>Send us a <em>message</em></h2>
                         <p>Our 24/7 line always available for you to help about your reservation.</p>
                         <div class="main-button">
-                            <a href="contact.html">Contact us</a>
+                            <a href="contact.php">Contact us</a>
                         </div>
                     </div>
                 </div>

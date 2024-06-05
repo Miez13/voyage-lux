@@ -42,23 +42,23 @@
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="index.html" class="logo">Vacation Rental<em> Website</em></a>
+                        <a href="index.php" class="logo">Vacation Rental<em> Website</em></a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="vacations.html">Vacations</a></li>
-                            <li><a href="blog.html" class="active">Blog</a></li>
+                            <li><a href="index.php">Home</a></li>
+                            <li><a href="vacations.php">Vacations</a></li>
+                            <li><a href="blog.php" class="active">Blog</a></li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>
                               
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item"  href="about.html">About Us</a>
-                                    <a class="dropdown-item" href="testimonials.html">Testimonials</a>
-                                    <a class="dropdown-item" href="terms.html">Terms</a>
+                                    <a class="dropdown-item"  href="about.php">About Us</a>
+                                    <a class="dropdown-item" href="testimonials.php">Testimonials</a>
+                                    <a class="dropdown-item" href="terms.php">Terms</a>
                                 </div>
                             </li>
-                            <li><a href="contact.html">Contact</a></li> 
+                            <li><a href="contact.php">Contact</a></li> 
                         </ul>        
                         <a class='menu-trigger'>
                             <span>Menu</span>
