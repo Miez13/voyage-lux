@@ -3,25 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Reviews</title>
 </head>
 <body>
+    <h1>Reviews</h1>
+    <button onclick="window.location.href='reviews.php?view=1'">View Reviews</button>
+    <button onclick="window.location.href='addReviews.php'">Add Review</button>
+    <br><br>
     <?php
-    include 'db_connect.php'; // Include the database connection file
+    include 'db_connect.php';
 
-    $sql = "SELECT * FROM Review";
-    $result = $conn->query($sql);
+    if (isset($_GET['view']) && $_GET['view'] == 1) {
+        $sql = "SELECT * FROM Review";
+        $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            echo "ReviewID: " . $row["ReviewID"]. " - Rating: " . $row["Rating"]. " - Comment: " . $row["Comment"]. " - UserID: " . $row["UserID"]. " - ListingID: " . $row["ListingID"]. "<br>";
+        if ($result->num_rows > 0) {
+            echo "<table border='1'>
+                    <tr>
+                        <th>ReviewID</th>
+                        <th>Rating</th>
+                        <th>Comment</th>
+                        <th>UserID</th>
+                        <th>ListingID</th>
+                    </tr>";
+            while($row = $result->fetch_assoc()) {
+                echo "<tr>
+                        <td>" . $row["ReviewID"]. "</td>
+                        <td>" . $row["Rating"]. "</td>
+                        <td>" . $row["Comment"]. "</td>
+                        <td>" . $row["UserID"]. "</td>
+                        <td>" . $row["ListingID"]. "</td>
+                      </tr>";
+            }
+            echo "</table>";
+        } else {
+            echo "No reviews found";
         }
-    } else {
-        echo "0 results";
     }
 
     $conn->close();
     ?>
+<br>
+<button onclick="window.location.href='Listings.php'">Back To Listing</button>
 
 </body>
 </html>

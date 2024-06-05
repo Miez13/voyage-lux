@@ -41,7 +41,7 @@
         <input type="submit" value="Login">
     </form>
     <br>
-    <p>Didn't have one? Sign up now</p>
+    <p>Don't have an account? Sign up now</p>
     <button onclick="window.location.href='signup.php'">Sign Up</button>
 </body>
 </html>
