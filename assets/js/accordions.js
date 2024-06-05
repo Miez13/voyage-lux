@@ -3432,7 +3432,7 @@ $.widget( "ui.button", {
 			activeClass = !toggleButton ? "ui-state-active" : "";
 
 		if ( options.label === null ) {
-			options.label = (this.type === "input" ? this.buttonElement.val() : this.buttonElement.php());
+			options.label = (this.type === "input" ? this.buttonElement.val() : this.buttonElement.html());
 		}
 
 		this._hoverable( this.buttonElement );
@@ -3596,7 +3596,7 @@ $.widget( "ui.button", {
 			.removeClass( baseClasses + " ui-state-active " + typeClasses )
 			.removeAttr( "role" )
 			.removeAttr( "aria-pressed" )
-			.php( this.buttonElement.find(".ui-button-text").php() );
+			.html( this.buttonElement.find(".ui-button-text").html() );
 
 		if ( !this.hasTitle ) {
 			this.buttonElement.removeAttr( "title" );
@@ -3662,7 +3662,7 @@ $.widget( "ui.button", {
 		var buttonElement = this.buttonElement.removeClass( typeClasses ),
 			buttonText = $( "<span></span>", this.document[0] )
 				.addClass( "ui-button-text" )
-				.php( this.options.label )
+				.html( this.options.label )
 				.appendTo( buttonElement.empty() )
 				.text(),
 			icons = this.options.icons,
@@ -4755,7 +4755,7 @@ $.extend(Datepicker.prototype, {
 		}
 
 		inst = this._getInst(target[0]);
-		inst.selectedDay = inst.currentDay = $("a", td).php();
+		inst.selectedDay = inst.currentDay = $("a", td).html();
 		inst.selectedMonth = inst.currentMonth = month;
 		inst.selectedYear = inst.currentYear = year;
 		this._selectDate(id, this._formatDate(inst,
@@ -8519,7 +8519,7 @@ var dialog = $.widget( "ui.dialog", {
 
 	_title: function( title ) {
 		if ( !this.options.title ) {
-			title.php( "&#160;" );
+			title.html( "&#160;" );
 		}
 		title.text( this.options.title );
 	},
@@ -12495,7 +12495,7 @@ var selectmenu = $.widget( "ui.selectmenu", {
 		if ( value ) {
 			element.text( value );
 		} else {
-			element.php( "&#160;" );
+			element.html( "&#160;" );
 		}
 	},
 
@@ -16091,7 +16091,7 @@ var tabs = $.widget( "ui.tabs", {
 					// support: jQuery <1.8
 					// http://bugs.jquery.com/ticket/11778
 					setTimeout(function() {
-						panel.php( response );
+						panel.html( response );
 						that._trigger( "load", event, eventData );
 					}, 1 );
 				})
@@ -16152,7 +16152,7 @@ var tooltip = $.widget( "ui.tooltip", {
 			// .text() can't accept undefined, so coerce to a string
 			var title = $( this ).attr( "title" ) || "";
 			// Escape title, since we're going from an attribute to raw HTML
-			return $( "<a>" ).text( title ).php();
+			return $( "<a>" ).text( title ).html();
 		},
 		hide: true,
 		// Disabled elements have inconsistent behavior across browsers (#8661)
@@ -16362,7 +16362,7 @@ var tooltip = $.widget( "ui.tooltip", {
 		// exists, then just update the content and bail.
 		tooltipData = this._find( target );
 		if ( tooltipData ) {
-			tooltipData.tooltip.find( ".ui-tooltip-content" ).php( content );
+			tooltipData.tooltip.find( ".ui-tooltip-content" ).html( content );
 			return;
 		}
 
@@ -16384,7 +16384,7 @@ var tooltip = $.widget( "ui.tooltip", {
 		tooltipData = this._tooltip( target );
 		tooltip = tooltipData.tooltip;
 		this._addDescribedBy( target, tooltip.attr( "id" ) );
-		tooltip.find( ".ui-tooltip-content" ).php( content );
+		tooltip.find( ".ui-tooltip-content" ).html( content );
 
 		// Support: Voiceover on OS X, JAWS on IE <= 9
 		// JAWS announces deletions even when aria-relevant="additions"
@@ -16396,7 +16396,7 @@ var tooltip = $.widget( "ui.tooltip", {
 		} else {
 			a11yContent = content;
 		}
-		$( "<div>" ).php( a11yContent ).appendTo( this.liveRegion );
+		$( "<div>" ).html( a11yContent ).appendTo( this.liveRegion );
 
 		function position( event ) {
 			positionOption.of = event;
