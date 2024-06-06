@@ -46,10 +46,10 @@
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="nav-item"><a href="index.php">Home</a></li>
-                            <li class="nav-item"><a href="vacations.php">Listings</a></li>
-                            <li class="nav-item"><a href="testimonials.php">Reviews</a></li>
-                            <li class="nav-item"><a href="about.php">About Us</a></a></li>
+                            <li><a href="index.php">Home</a></li>
+                            <li><a href="vacations.php">Listings</a></li>
+                            <li><a href="testimonials.php">Reviews</a></li>
+                            <li><a href="about.php">About Us</a></a></li>
                             <!--<li><a href="blog.php">Blog</a></li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>
@@ -60,7 +60,7 @@
                                     <a class="dropdown-item" href="terms.php">Terms</a>
                                 </div>
                             </li>-->
-                            <li class="nav-item"><a href="contact.php">Contact</a></li> 
+                            <li><a href="contact.php">Contact</a></li> 
                         </ul>        
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -104,29 +104,40 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="trainer-item">
-                        <div class="image-thumb">
-                            <img src="assets/images/rumah/product-1-720x480.jpg" alt="">
+            <?php
+            include 'db_connect.php';
+            
+            $sql = "SELECT * FROM Listing";
+            $result = $conn->query($sql);
+
+            while($row = $result->fetch_assoc()) {
+                $listing_id = $row["ListingID"];
+                echo "<div class='col-lg-4'>
+                        <div class='trainer-item'>
+                            <div class='image-thumb'>
+                                <img src='' alt=''>
+                            </div>
+                            <div class='down-content'>
+                                <span>
+                                    RM " . $row["Price"]. ".00
+                                </span>
+
+                                <h4>" . $row["Title"]. "</h4>
+
+                                <p>
+                                    <i class='fa fa-map-marker'></i> " . $row["Location"]. "
+                                </p>
+
+
+                                <ul class='social-icons'>
+                                    <li><a href='vacation-details.php?id=$listing_id'>+ View More</a></li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="down-content">
-                            <span>
-                                RM 150.00 - RM 450.00
-                            </span>
-
-                            <h4>7 Cloud Homestay</h4>
-
-                            <p>
-                                <i class="fa fa-map-marker"></i> Johor Bahru, Johor
-                            </p>
-
-                            <ul class="social-icons">
-                                <li><a href="vacation-details.php">+ View More</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
+                    </div>";
+            }
+            ?>
+                    <div class="col-lg-4">
                     <div class="trainer-item">
                         <div class="image-thumb">
                             <img src="assets/images/rumah/rumah 1.jpg" alt="">
@@ -294,7 +305,7 @@
                         <p>Help you to decide whether to make reservations</p>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 | offset-pos">
                     <ul class="features-items">
                         <li class="feature-item">
                             <div class="left-icon">
@@ -316,7 +327,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 | offset-pos">
                     <ul class="features-items">
                         <li class="feature-item">
                             <div class="left-icon">

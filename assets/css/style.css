@@ -248,13 +248,13 @@ header
   z-index: 999;
 }
 
-.header-area .main-nav .nav .nav-item {
+.header-area .main-nav .nav li {
   padding-left: 20px;
   padding-right: 20px;
   color: #ffffff;
 }
 
-.header-area .main-nav .nav .nav-item a {
+.header-area .main-nav .nav li a {
   display: block;
   font-weight: 500;
   font-size: 13px;

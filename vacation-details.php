@@ -1,3 +1,40 @@
+<?php
+include 'db_connect.php';
+
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Check if listing_id is set in the URL
+if (isset($_GET["id"])) {
+  $listingID = $_GET["id"];
+
+  // Prepare and execute the SQL statement to fetch the listing details
+  $stmt = $conn->prepare("SELECT * FROM Listing WHERE ListingID = ?");
+  $stmt->bind_param("s", $listingID);
+  $stmt->execute();
+  $result = $stmt->get_result();
+
+  // Check if a result is returned
+  if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $listing_title = $row["Title"];
+    $description = $row["Description"];
+    $price = $row["Price"];
+  } else {
+    $listing_title = "Listing not found";
+    $description = "description not found";
+    $price = "price not found";
+  }
+
+  $stmt->close();
+} else {
+  $listing_title = "No listing ID provided";
+}
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,11 +83,11 @@
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                         <li class="nav-item"><a href="index.php">Home</a></li>
-                         <li class="nav-item"><a href="vacations.php">Listings</a></li>
-                         <li class="nav-item"><a href="testimonials.php">Reviews</a></li>
-                         <li class="nav-item"><a href="about.php">About Us</a></a></li>
-                         <li class="nav-item"><a href="contact.php">Contact</a></li> 
+                         <li><a href="index.php">Home</a></li>
+                         <li><a href="vacations.php">Listings</a></li>
+                         <li><a href="testimonials.php">Reviews</a></li>
+                         <li><a href="about.php">About Us</a></a></li>
+                         <li><a href="contact.php">Contact</a></li> 
                          <!--<li><a href="blog.php">Blog</a></li>
                          <li class="dropdown">
                              <a class="dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>
@@ -80,7 +117,7 @@
                     <div class="cta-content">
                         <br>
                         <br>
-                        <h2>7 cloud homestay</h2>
+                        <h2><?php echo $listing_title; ?></h2>
                         <br>
                         <div class="main-button">
                           <a href="#" data-toggle="modal" data-target="#exampleModal">Enquiry</a>
@@ -159,11 +196,7 @@
                   <article id='tabs-2'>
                     <h4>Vacation Description</h4>
                     
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia doloremque sit, enim sint odio corporis illum perferendis, unde repellendus aut dolore doloribus minima qui ullam vel possimus magnam ipsa deleniti.</p> 
-                    
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ducimus ab numquam magnam aliquid, odit provident consectetur corporis eius blanditiis alias nulla commodi qui voluptatibus laudantium quaerat tempore possimus esse nam sed accusantium inventore? Sapiente minima dicta sed quia sunt?</p>
-                    
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum qui, corrupti consequuntur. Officia consectetur error amet debitis esse minus quasi, dicta suscipit tempora, natus, vitae voluptatem quae libero. Sunt nulla culpa impedit! Aliquid cupiditate, impedit reiciendis dolores, illo adipisci, omnis dolor distinctio voluptas expedita maxime officiis maiores cumque sequi quaerat culpa blanditiis. Quia tenetur distinctio rem, quibusdam officiis voluptatum neque!</p>
+                    <p><?php echo $description ?></p> 
                    </article>
                   <article id='tabs-3'>
                     <h4>Availability &amp; Prices</h4>
@@ -182,29 +215,9 @@
                          <tbody>
                               <tr>
                                    <td></td>
-                                   <td>01-06-2020</td>
-                                   <td>31-12-2020</td>
-                                   <td>€ 300 per night</td>
-                              </tr>
-
-                              <tr>
                                    <td></td>
-                                   <td>01-06-2020</td>
-                                   <td>31-12-2020</td>
-                                   <td>€ 300 per night</td>
-                              </tr>
-
-                              <tr>
                                    <td></td>
-                                   <td>01-06-2020</td>
-                                   <td>31-12-2020</td>
-                                   <td>€ 300 per night</td>
-                              </tr>
-                              <tr>
-                                   <td></td>
-                                   <td>01-06-2020</td>
-                                   <td>31-12-2020</td>
-                                   <td>€ 4000 total price</td>
+                                   <td>RM<?php echo $price ?> per night</td>
                               </tr>
                          </tbody>
                       </table>

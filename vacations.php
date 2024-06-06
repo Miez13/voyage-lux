@@ -46,11 +46,11 @@
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="nav-item"><a href="index.php">Home</a></li>
-                            <li class="nav-item"><a href="vacations.php">Listings</a></li>
-                            <li class="nav-item"><a href="testimonials.php">Reviews</a></li>
-                            <li class="nav-item"><a href="about.php">About Us</a></a></li>
-                            <li class="nav-item"><a href="contact.php">Contact</a></li> 
+                            <li><a href="index.php">Home</a></li>
+                            <li><a href="vacations.php">Listings</a></li>
+                            <li><a href="testimonials.php">Reviews</a></li>
+                            <li><a href="about.php">About Us</a></a></li>
+                            <li><a href="contact.php">Contact</a></li> 
                             <!--<li><a href="blog.php">Blog</a></li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>
@@ -96,139 +96,39 @@
             <br>
 
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="trainer-item">
-                        <div class="image-thumb">
-                            <img src="assets/images/rumah/product-1-720x480.jpg" alt="">
+            <?php
+            include 'db_connect.php';
+            
+            $sql = "SELECT * FROM Listing";
+            $result = $conn->query($sql);
+
+            while($row = $result->fetch_assoc()) {
+                $listing_id = $row["ListingID"];
+                echo "<div class='col-lg-4'>
+                        <div class='trainer-item'>
+                            <div class='image-thumb'>
+                                <img src='' alt=''>
+                            </div>
+                            <div class='down-content'>
+                                <span>
+                                    RM " . $row["Price"]. ".00
+                                </span>
+
+                                <h4>" . $row["Title"]. "</h4>
+
+                                <p>
+                                    <i class='fa fa-map-marker'></i> " . $row["Location"]. "
+                                </p>
+
+
+                                <ul class='social-icons'>
+                                    <li><a href='vacation-details.php?id=$listing_id'>+ View More</a></li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="down-content">
-                            <span>
-                                RM 150.00 - RM 450.00
-                            </span>
-
-                            <h4>7 Cloud Homestay</h4>
-
-                            <p>
-                                <i class="fa fa-map-marker"></i> Johor Bahru, Johor
-                            </p>
-
-
-                            <ul class="social-icons">
-                                <li><a href="vacation-details.php">+ View More</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="trainer-item">
-                        <div class="image-thumb">
-                            <img src="assets/images/rumah/rumah 1.jpg" alt="">
-                        </div>
-                        <div class="down-content">
-                            <span>
-                                RM 111.00 - RM 611.00
-                            </span>
-
-                            <h4>Rumah Singgah</h4>
-
-                            <p>
-                                <i class="fa fa-map-marker"></i> Machang, Kelantan
-                            </p>
-
-                            <ul class="social-icons">
-                                <li><a href="vacation-details.php">+ View More</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="trainer-item">
-                        <div class="image-thumb">
-                            <img src="assets/images/rumah/product-5-720x480.jpg" height="213" alt="">
-                        </div>
-                        <div class="down-content">
-                            <span>
-                                RM 250.00 - RM 750.00
-                            </span>
-
-                            <h4>Perhentian Dream</h4>
-
-                            <p>
-                                <i class="fa fa-map-marker"></i> Perhentian Island, Terengganu
-                            </p>
-
-                            <ul class="social-icons">
-                                <li><a href="vacation-details.php">+ View More</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="trainer-item">
-                        <div class="image-thumb">
-                            <img src="assets/images/rumah/rumah 3.jpg" height="213" alt="">
-                        </div>
-                        <div class="down-content">
-                            <span>
-                                RM 200.00 - RM 550.00
-                            </span>
-
-                            <h4>Zen Zone Homestay</h4>
-
-                            <p>
-                                <i class="fa fa-map-marker"></i> Kuantan, Pahang
-                            </p>
-                            <ul class="social-icons">
-                                <li><a href="vacation-details.php">+ View More</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="trainer-item">
-                        <div class="image-thumb">
-                            <img src="assets/images/rumah/rumah 2.jpg" height="213" alt="">
-                        </div>
-                        <div class="down-content">
-                            <span>
-                                RM 500.00 - RM 700.00
-                            </span>
-
-                            <h4>Cendana Homestay</h4>
-
-                            <p>
-                                <i class="fa fa-map-marker"></i> Puchong, Selangor
-                            </p>
-
-                            <ul class="social-icons">
-                                <li><a href="vacation-details.php">+ View More</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="trainer-item">
-                        <div class="image-thumb">
-                            <img src="assets/images/rumah/rumah 4.jpg" alt="">
-                        </div>
-                        <div class="down-content">
-                            <span>
-                                RM 500.00 - RM 700.00
-                            </span>
-
-                            <h4>Hidden Gem Homestay</h4>
-
-                            <p>
-                                <i class="fa fa-map-marker"></i> Taiping, Perak
-                            </p>
-
-                            <ul class="social-icons">
-                                <li><a href="vacation-details.php">+ View More</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                    </div>";
+            }
+            ?>
             </div>
 
             <br>
