@@ -16,6 +16,7 @@
             $description = $_POST['description'];
             $location = $_POST['location'];
             $price = $_POST['price'];
+            $listingPicture = $_POST['listingPicture'];
             $userID = $_SESSION['user_id']; 
 
             $sql_max_id = "SELECT MAX(CAST(SUBSTRING_INDEX(ListingID, 'L', -1) AS UNSIGNED)) AS max_id FROM Listing";
@@ -24,7 +25,7 @@
             $max_id = $row_max_id['max_id'];
             $new_id = 'L' . str_pad($max_id + 1, 4, '0', STR_PAD_LEFT);
 
-            $sql = "INSERT INTO Listing (ListingID, Title, Description, Location, Price, UserID) VALUES ('$new_id', '$title', '$description', '$location', '$price', '$userID')";
+            $sql = "INSERT INTO Listing (ListingID, Title, Description, Location, Price, ListingPicture, UserID) VALUES ('$new_id', '$title', '$description', '$location', '$price', '$listingPicture', '$userID')";
 
             if ($conn->query($sql) === TRUE) {
                 echo "New listing created successfully";

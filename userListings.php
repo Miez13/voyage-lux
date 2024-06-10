@@ -1,3 +1,4 @@
+<!-- userListings.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,7 @@
 </head>
 <body>
 
-    <!-- ***** Preloader Start ***** -->
+    <!-- ***** Preloader Start *****
     <div id="js-preloader" class="js-preloader">
       <div class="preloader-inner">
         <span class="dot"></span>
@@ -24,7 +25,7 @@
         </div>
       </div>
     </div>
-    <!-- ***** Preloader End ***** -->
+    ***** Preloader End ***** -->
 
     <?php
         include 'db_connect.php';
@@ -80,7 +81,6 @@
     </div>
 </header>
 
-
 <!-- Profile Modal -->
 <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -106,119 +106,117 @@
     </div>
 </div>
 
-
-
-    <!-- ***** Call to Action Start ***** -->
-    <section class="section section-bg" id="call-to-action" style="background-image: url(assets/images/banner-image-1-1920x500.jpg)">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1">
-                    <div class="cta-content">
-                        <br>
-                        <br>
-                        <h2>Our <em>Packages</em></h2>
-                        <p>We prioritize to provide you the best selection of homestay</p>
-                    </div>
+<!-- ***** Call to Action Start ***** -->
+<section class="section section-bg" id="call-to-action" style="background-image: url(assets/images/banner-image-1-1920x500.jpg)">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                <div class="cta-content">
+                    <br>
+                    <br>
+                    <h2>My <em>Listings</em></h2>
+                    <p>Manage your homestay listings here</p>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- ***** Call to Action End ***** -->
+    </div>
+</section>
+<!-- ***** Call to Action End ***** -->
 
-    <!-- ***** Listings Starts ***** -->
-    <section class="section" id="trainers">
-        <div class="container">
-            <br>
-            <br>
-            <div class="row">
+<!-- ***** User Listings Starts ***** -->
+<section class="section" id="trainers">
+    <div class="container">
+        <br>
+        <br>
+        <div class="row">
 
-            <?php
-            include 'db_connect.php';
+        <?php
+        $user_id = $_SESSION['user_id'];
+        $sql = "SELECT * FROM Listing WHERE UserID = '$user_id'";
+        $result = $conn->query($sql);
 
-            $sql = "SELECT * FROM Listing";
-            $result = $conn->query($sql);
-
-            while($row = $result->fetch_assoc()) {
-                $listing_id = $row["ListingID"];
-                $listing_picture = $row["ListingPicture"];
-                echo "<div class='col-lg-4'>
-                        <div class='trainer-item'>
-                            <div class='image-thumb'>
-                                <img src='" . $listing_picture . "' alt=''>
-                            </div>
-                            <div class='down-content'>
-                                <span>
-                                    RM " . $row["Price"]. ".00
-                                </span>
-                                <h4>" . $row["Title"]. "</h4>
-                                <p>
-                                    <i class='fa fa-map-marker'></i> " . $row["Location"]. "
-                                </p>
-                                <ul class='social-icons'>
-                                    <li><a href='listing-details.php?id=$listing_id'>+ View More</a></li>
-                                </ul>
-                            </div>
+        while($row = $result->fetch_assoc()) {
+            $listingID = $row["ListingID"];
+            echo "<div class='col-lg-4'>
+                    <div class='trainer-item'>
+                        <div class='image-thumb'>
+                            <img src='" . $row["ListingPicture"] . "' alt=''>
                         </div>
-                    </div>";
-            }
-            ?>
-            </div>
-
-            <br>
-            <nav>
-              <ul class="pagination pagination-lg justify-content-center">
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-
+                        <div class='down-content'>
+                            <span>
+                                RM " . $row["Price"]. ".00
+                            </span>
+                            <h4>" . $row["Title"]. "</h4>
+                            <p>
+                                <i class='fa fa-map-marker'></i> " . $row["Location"]. "
+                            </p>
+                            <ul class='social-icons'>
+                                <li><a href='listing-details.php?id=$listingID'>+ View More</a></li>
+                                <li><a href='updateListingInfo.php?id=$listingID'>Edit</a></li>
+                                <li><a href='deleteListings.php?id=$listingID'>Delete</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>";
+        }
+        ?>
         </div>
-    </section>
-    <!-- ***** Listings Ends ***** -->
 
-    <!-- ***** Footer Start ***** -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>
-                        Copyright © 2024 Zen Corporation
-                    </p>
-                </div>
+        <br>
+        <nav>
+          <ul class="pagination pagination-lg justify-content-center">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+    </div>
+</section>
+<!-- ***** User Listings Ends ***** -->
+
+<!-- ***** Footer Start ***** -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <p>
+                    Copyright © 2024 Zen Corporation
+                </p>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
-    <!-- jQuery -->
-    <script src="assets/js/jquery-2.1.0.min.js"></script>
+<!-- jQuery -->
+<script src="assets/js/jquery-2.1.0.min.js"></script>
 
-    <!-- Bootstrap -->
-    <script src="assets/js/popper.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+<!-- Bootstrap -->
+<script src="assets/js/popper.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
 
-    <!-- Plugins -->
-    <script src="assets/js/scrollreveal.min.js"></script>
-    <script src="assets/js/waypoints.min.js"></script>
-    <script src="assets/js/jquery.counterup.min.js"></script>
-    <script src="assets/js/imgfix.min.js"></script> 
-    <script src="assets/js/mixitup.js"></script> 
-    <script src="assets/js/accordions.js"></script>
+<!-- Plugins -->
+<script src="assets/js/scrollreveal.min.js"></script>
+<script src="assets/js/waypoints.min.js"></script>
+<script src="assets/js/jquery.counterup.min.js"></script>
+<script src="assets/js/imgfix.min.js"></script> 
+<script src="assets/js/mixitup.js"></script> 
+<script src="assets/js/accordions.js"></script>
     
-    <!-- Global Init -->
-    <script src="assets/js/custom.js"></script>
+<!-- Global Init -->
+<script src="assets/js/custom.js"></script>
 
 </body>
 </html>

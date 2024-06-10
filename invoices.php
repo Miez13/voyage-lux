@@ -9,7 +9,7 @@
     <?php
         include 'db_connect.php';
 
-        $sql = "SELECT * FROM Invoice";
+        $sql = "SELECT * FROM invoice";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {

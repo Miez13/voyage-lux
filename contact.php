@@ -35,42 +35,82 @@
     <!-- ***** Preloader End ***** -->
     
     
+    <?php
+    session_start();
+    ?>
     <!-- ***** Header Area Start ***** -->
     <header class="header-area header-sticky">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <nav class="main-nav">
-                        <!-- ***** Logo Start ***** -->
-                        <a href="index.php" class="logo">VOYAGELUX<em> BY ZEN CORP</em></a>
-                        <!-- ***** Logo End ***** -->
-                        <!-- ***** Menu Start ***** -->
-                        <ul class="nav">
-                          <li class="nav-item"><a href="index.php">Home</a></li>
-                          <li class="nav-item"><a href="vacations.php">Listings</a></li>
-                          <li class="nav-item"><a href="testimonials.php">Reviews</a></li>
-                          <li class="nav-item"><a href="about.php">About Us</a></a></li>
-                          <li class="nav-item"><a href="contact.php">Contact</a></li> 
-                          <!--<li><a href="blog.php">Blog</a></li>
-                          <li class="dropdown">
-                           <a class="dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>
-                         
-                           <div class="dropdown-menu">
-                               <a class="dropdown-item active"  href="about.php">About Us</a>
-                               <a class="dropdown-item" href="testimonials.php">Testimonials</a>
-                               <a class="dropdown-item" href="terms.php">Terms</a>
-                           </div>
-                       </li>-->      
-                        <a class='menu-trigger'>
-                            <span>Menu</span>
-                        </a>
-                        <!-- ***** Menu End ***** -->
-                    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.php" class="logo">
+                        VoyageLux <span>by Zen Corp</span>
+                        <img src="./assets/images/logoVL2.1.png" alt="logo Image" class="img-logo">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="listings.php">Listings</a></li>
+                        <li><a href="testimonials.php">Reviews</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>
+                            <div class="dropdown-menu">
+                                <a href="about.php">About Us</a>
+                                <a href="contact.php">Contact</a> 
+                            </div>
+                        </li>
+                        <?php if (isset($_SESSION['user_id'])): ?>
+                            <li>
+                                <a href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+                                <form id="logout-form" action="login.php" method="post" style="display: none;">
+                                    <input type="hidden" name="logout" value="1">
+                                </form>
+                            </li>
+                            <li>
+                                <a href="#" class="profile-icon" data-toggle="modal" data-target="#profileModal">
+                                    <i class="fa fa-user"></i> <?php echo $_SESSION['user_name']; ?>
+                                </a>
+                            </li>
+                        <?php else: ?>
+                            <li><a href="login.php">Login</a></li>
+                        <?php endif; ?>      
+                    </ul>
+                    <a class="menu-trigger">
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <!-- Profile Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalLabel">Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>User ID:</strong> <?php echo $_SESSION['user_id']; ?></p>
+                    <p><strong>Username:</strong> <?php echo $_SESSION['user_name']; ?></p>
+                    <p><strong>Email:</strong> <?php echo $_SESSION['user_email']; ?></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="users.php" class="btn btn-primary">Display More</a>
                 </div>
             </div>
         </div>
-    </header>
-    <!-- ***** Header Area End ***** -->
+    </div>
 
     <section class="section section-bg" id="call-to-action" style="background-image: url(assets/images/banner-image-1-1920x500.jpg)">
         <div class="container">

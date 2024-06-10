@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
 
-    <title>PHPJabbers.com | Free Vacation Rental Website Template</title>
+    <title>VoyageLux Homestay Reservation Website</title>
 
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
@@ -34,43 +34,82 @@
     </div>
     <!-- ***** Preloader End ***** -->
     
-    
+    <?php
+    session_start();
+    ?>
     <!-- ***** Header Area Start ***** -->
     <header class="header-area header-sticky">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <nav class="main-nav">
-                        <!-- ***** Logo Start ***** -->
-                        <a href="index.php" class="logo">Vacation Rental<em> Website</em></a>
-                        <!-- ***** Logo End ***** -->
-                        <!-- ***** Menu Start ***** -->
-                        <ul class="nav">
-                            <li class="nav-item"><a href="index.php">Home</a></li>
-                            <li class="nav-item"><a href="vacations.php">Listings</a></li>
-                            <li class="nav-item"><a href="testimonials.php">Reviews</a></li>
-                            <li class="nav-item"><a href="about.php">About Us</a></a></li>
-                            <li class="nav-item"><a href="contact.php">Contact</a></li> 
-                            <!--<li><a href="blog.php">Blog</a></li>
-                            <li class="dropdown">
-                             <a class="dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>
-                           
-                             <div class="dropdown-menu">
-                                 <a class="dropdown-item active"  href="about.php">About Us</a>
-                                 <a class="dropdown-item" href="testimonials.php">Testimonials</a>
-                                 <a class="dropdown-item" href="terms.php">Terms</a>
-                             </div>
-                         </li>-->       
-                        <a class='menu-trigger'>
-                            <span>Menu</span>
-                        </a>
-                        <!-- ***** Menu End ***** -->
-                    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.php" class="logo">
+                        VoyageLux <span>by Zen Corp</span>
+                        <img src="./assets/images/logoVL2.1.png" alt="logo Image" class="img-logo">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="listings.php">Listings</a></li>
+                        <li><a href="testimonials.php">Reviews</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>
+                            <div class="dropdown-menu">
+                                <a href="about.php">About Us</a>
+                                <a href="contact.php">Contact</a> 
+                            </div>
+                        </li>
+                        <?php if (isset($_SESSION['user_id'])): ?>
+                            <li>
+                                <a href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+                                <form id="logout-form" action="login.php" method="post" style="display: none;">
+                                    <input type="hidden" name="logout" value="1">
+                                </form>
+                            </li>
+                            <li>
+                                <a href="#" class="profile-icon" data-toggle="modal" data-target="#profileModal">
+                                    <i class="fa fa-user"></i> <?php echo $_SESSION['user_name']; ?>
+                                </a>
+                            </li>
+                        <?php else: ?>
+                            <li><a href="login.php">Login</a></li>
+                        <?php endif; ?>      
+                    </ul>
+                    <a class="menu-trigger">
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <!-- Profile Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalLabel">Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>User ID:</strong> <?php echo $_SESSION['user_id']; ?></p>
+                    <p><strong>Username:</strong> <?php echo $_SESSION['user_name']; ?></p>
+                    <p><strong>Email:</strong> <?php echo $_SESSION['user_email']; ?></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="users.php" class="btn btn-primary">Display More</a>
                 </div>
             </div>
         </div>
-    </header>
-    <!-- ***** Header Area End ***** -->
+    </div>
 
     <section class="section section-bg" id="call-to-action" style="background-image: url(assets/images/banner-image-1-1920x500.jpg)">
         <div class="container">
@@ -79,69 +118,68 @@
                     <div class="cta-content">
                         <br>
                         <br>
-                        <h2>Read our <em>Testimonials</em></h2>
-                        <p>Ut consectetur, metus sit amet aliquet placerat, enim est ultricies ligula</p>
+                        <h2>Read our <em>Reviews</em></h2>
+                        <p>Help you to make a better decision for your holiday stay</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-     <!-- ***** Testimonials Item Start ***** -->
-    <section class="section" id="features">
-        <div class="container">
-            <br>
-            <br>
-            <br>
-            <div class="row">
-                <div class="col-lg-6">
-                    <ul class="features-items">
-                        <li class="feature-item">
-                            <div class="left-icon">
-                                <img src="assets/images/features-first-icon.png" alt="First One">
-                            </div>
-                            <div class="right-content">
-                                <h4>John Doe</h4>
-                                <p><em>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta numquam maxime voluptatibus, impedit sed! Necessitatibus repellendus sed deleniti id et!"</em></p>
-                            </div>
-                        </li>
-                        <li class="feature-item">
-                            <div class="left-icon">
-                                <img src="assets/images/features-first-icon.png" alt="second one">
-                            </div>
-                            <div class="right-content">
-                                <h4>John Doe</h4>
-                                <p><em>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta numquam maxime voluptatibus, impedit sed! Necessitatibus repellendus sed deleniti id et!"</em></p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-6">
-                    <ul class="features-items">
-                        <li class="feature-item">
-                            <div class="left-icon">
-                                <img src="assets/images/features-first-icon.png" alt="fourth muscle">
-                            </div>
-                            <div class="right-content">
-                                <h4>John Doe</h4>
-                                <p><em>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta numquam maxime voluptatibus, impedit sed! Necessitatibus repellendus sed deleniti id et!"</em></p>
-                            </div>
-                        </li>
-                        <li class="feature-item">
-                            <div class="left-icon">
-                                <img src="assets/images/features-first-icon.png" alt="training fifth">
-                            </div>
-                            <div class="right-content">
-                                <h4>John Doe</h4>
-                                <p><em>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta numquam maxime voluptatibus, impedit sed! Necessitatibus repellendus sed deleniti id et!"</em></p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+     <!-- ***** Reviews Section Start ***** -->
+<section class="section" id="reviews">
+    <div class="container">
+        <h4>Reviews</h4>
+        <div class="row">
+            <div class="col-lg-6">
+                <ul class="features-items">
+                    <li class="feature-item">
+                        <div class="left-icon">
+                            <img src="assets/images/gmbr kimi.jpg" height="90" width="87" alt="First One">
+                        </div>
+                        <div class="right-content">
+                            <h4>Mi J</h4>
+                            <p>"A great option to run away from hectic life."</p>
+                        </div>
+                    </li>
+                    <li class="feature-item">
+                        <div class="left-icon">
+                            <img src="assets/images/gmbr pokka.jpg" height="90" width="87" alt="second one">
+                        </div>
+                        <div class="right-content">
+                            <h4>Pokka</h4>
+                            <p>"Swimming for life. That's for sure."</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-6">
+                <ul class="features-items">
+                    <li class="feature-item">
+                        <div class="left-icon">
+                            <img src="assets/images/qeri.jpg" height="90" width="87" alt="third one">
+                        </div>
+                        <div class="right-content">
+                            <h4>al-Qori</h4>
+                            <p><em>"Inner peace is when you don't stress"</em></p>
+                        </div>
+                    </li>
+                    <li class="feature-item">
+                        <div class="left-icon">
+                            <img src="assets/images/Qema.jpg" height="90" width="87" alt="fourth one">
+                        </div>
+                        <div class="right-content">
+                            <h4>Qemal</h4>
+                            <p>"Smash through life. If not I dont know la."</p>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
-    </section>
-    <!-- ***** Testimonials Item End ***** -->
+    </div>
+</section>
+<!-- ***** Reviews Section End ***** -->
+
 
     <!-- ***** Footer Start ***** -->
     <footer>
@@ -149,8 +187,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <p>
-                        Copyright © 2020 Company Name
-                        - Template by: <a href="https://www.phpjabbers.com/">PHPJabbers.com</a>
+                        Copyright © 2024 Zen Corporation</a>
                     </p>
                 </div>
             </div>

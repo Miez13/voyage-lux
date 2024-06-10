@@ -47,7 +47,7 @@
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li><a href="index.php">Home</a></li>
-                            <li><a href="vacations.php">Vacations</a></li>
+                            <li><a href="listings.php">Vacations</a></li>
                             <li><a href="blog.php">Blog</a></li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>

@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -12,66 +11,117 @@
     <title>VoyageLux Homestay Reservation Website</title>
 
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Include Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-    </head>
-    
-    <body>
-    
-    <!-- ***** Preloader Start ***** -->
-    <div id="js-preloader" class="js-preloader">
-      <div class="preloader-inner">
-        <span class="dot"></span>
-        <div class="dots">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    </div>
-    <!-- ***** Preloader End ***** -->
-    
-    
+    <!-- Custom CSS for Profile Modal -->
+    <style>
+        .profile-icon {
+            cursor: pointer;
+            font-size: 20px;
+            color: #fff;
+        }
+        .modal-content {
+            padding: 20px;
+        }
+        .modal-header {
+            border-bottom: none;
+        }
+        .modal-footer {
+            border-top: none;
+        }
+    </style>
+</head>
+
+<body>
+    <?php
+        include 'db_connect.php';
+        session_start();
+    ?>
     <!-- ***** Header Area Start ***** -->
     <header class="header-area header-sticky">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <nav class="main-nav">
-                        <!-- ***** Logo Start ***** -->
-                        <a href="index.php" class="logo">VoyageLux <span> by zen corp</span> <img src="./assets/images/logoVL2.png" alt="logo Image" class="img-logo"></a>
-                        <!-- ***** Logo End ***** -->
-                        <!-- ***** Menu Start ***** -->
-                        <ul class="nav">
-                            <li><a href="index.php">Home</a></li>
-                            <li><a href="vacations.php">Listings</a></li>
-                            <li><a href="testimonials.php">Reviews</a></li>
-                            <li><a href="about.php">About Us</a></a></li>
-                            <!--<li><a href="blog.php">Blog</a></li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>
-                              
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item active"  href="about.php">About Us</a>
-                                    <a class="dropdown-item" href="testimonials.php">Testimonials</a>
-                                    <a class="dropdown-item" href="terms.php">Terms</a>
-                                </div>
-                            </li>-->
-                            <li><a href="contact.php">Contact</a></li> 
-                        </ul>        
-                        <a class='menu-trigger'>
-                            <span>Menu</span>
-                        </a>
-                        <!-- ***** Menu End ***** -->
-                    </nav>
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.php" class="logo">
+                        VoyageLux <span>by Zen Corp</span>
+                        <img src="./assets/images/logoVL2.1.png" alt="logo Image" class="img-logo">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="listings.php">Listings</a></li>
+                        <li><a href="testimonials.php">Reviews</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>
+                            <div class="dropdown-menu">
+                                <a href="about.php">About Us</a>
+                                <a href="contact.php">Contact</a> 
+                            </div>
+                        </li>
+                        <?php if (isset($_SESSION['user_id'])): ?>
+                            <li>
+                                <a href="#" onclick="document.getElementById('logout-form').submit();">Log out</a>
+                                <form id="logout-form" action="login.php" method="post" style="display: none;">
+                                    <input type="hidden" name="logout" value="1">
+                                </form>
+                            </li>
+                            <li>
+                                <a href="#" class="profile-icon" data-toggle="modal" data-target="#profileModal">
+                                    <i class="fa fa-user"></i> <?php echo $_SESSION['user_name']; ?>
+                                </a>
+                            </li>
+                        <?php else: ?>
+                            <li><a href="login.php">Log in</a></li>
+                        <?php endif; ?>      
+                    </ul>
+                    <a class="menu-trigger">
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
             </div>
         </div>
-    </header>
-    <!-- ***** Header Area End ***** -->
+    </div>
+</header>
+
+
+<!-- Profile Modal -->
+<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="profileModalLabel">Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p><strong>User ID:</strong> <?php echo $_SESSION['user_id']; ?></p>
+                <p><strong>Username:</strong> <?php echo $_SESSION['user_name']; ?></p>
+                <p><strong>Email:</strong> <?php echo $_SESSION['user_email']; ?></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a href="userlistings.php?user_id=<?php echo $_SESSION['user_id']; ?>" class="btn btn-primary">View Listings</a>
+                <a href="reservations.php" class="btn btn-success">View Reservations</a>
+                <a href="users.php" class="btn btn-warning">Edit Info</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 
     <!-- ***** Main Banner Area Start ***** -->
     <div class="main-banner" id="top">
@@ -91,7 +141,7 @@
     </div>
     <!-- ***** Main Banner Area End ***** -->
 
-   <!-- ***** Cars Starts ***** -->
+    <!-- ***** Featured Homestay Section Start ***** -->
     <section class="section" id="trainers">
         <div class="container">
             <div class="row">
@@ -104,40 +154,41 @@
                 </div>
             </div>
             <div class="row">
-            <?php
-            include 'db_connect.php';
-            
-            $sql = "SELECT * FROM Listing";
-            $result = $conn->query($sql);
+                <?php
+                include 'db_connect.php';
+                
+                $sql = "SELECT * FROM Listing";
+                $result = $conn->query($sql);
 
-            while($row = $result->fetch_assoc()) {
-                $listing_id = $row["ListingID"];
-                echo "<div class='col-lg-4'>
-                        <div class='trainer-item'>
-                            <div class='image-thumb'>
-                                <img src='' alt=''>
+                while($row = $result->fetch_assoc()) {
+                    $listing_id = $row["ListingID"];
+                    echo "<div class='col-lg-4'>
+                            <div class='trainer-item'>
+                                <div class='image-thumb'>
+                                    <img src='' alt=''>
+                                </div>
+                                <div class='down-content'>
+                                    <span>
+                                        RM " . $row["Price"]. ".00
+                                    </span>
+
+                                    <h4>" . $row["Title"]. "</h4>
+
+                                    <p>
+                                        <i class='fa fa-map-marker'></i> " . $row["Location"]. "
+                                    </p>
+
+
+                                    <ul class='social-icons'>
+                                        <li><a href='listing-details.php?id=$listing_id'>+ View More</a></li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class='down-content'>
-                                <span>
-                                    RM " . $row["Price"]. ".00
-                                </span>
-
-                                <h4>" . $row["Title"]. "</h4>
-
-                                <p>
-                                    <i class='fa fa-map-marker'></i> " . $row["Location"]. "
-                                </p>
-
-
-                                <ul class='social-icons'>
-                                    <li><a href='vacation-details.php?id=$listing_id'>+ View More</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>";
-            }
-            ?>
-                    <div class="col-lg-4">
+                        </div>";
+                }
+                ?>
+                <!-- Example Listings (for demo purposes) -->
+                <div class="col-lg-4">
                     <div class="trainer-item">
                         <div class="image-thumb">
                             <img src="assets/images/rumah/rumah 1.jpg" alt="">
@@ -146,15 +197,12 @@
                             <span>
                                 RM 111.00 - RM 611.00
                             </span>
-
                             <h4>Rumah Singgah</h4>
-
                             <p>
                                 <i class="fa fa-map-marker"></i> Machang, Kelantan
                             </p>
-
                             <ul class="social-icons">
-                                <li><a href="vacation-details.php">+ View More</a></li>
+                                <li><a href="listing-details.php">+ View More</a></li>
                             </ul>
                         </div>
                     </div>
@@ -168,15 +216,12 @@
                             <span>
                                 RM 250.00 - RM 750.00
                             </span>
-
                             <h4>Perhentian Dream</h4>
-
                             <p>
                                 <i class="fa fa-map-marker"></i> Perhentian Island, Terengganu
                             </p>
-
                             <ul class="social-icons">
-                                <li><a href="vacation-details.php">+ View More</a></li>
+                                <li><a href="listing-details.php">+ View More</a></li>
                             </ul>
                         </div>
                     </div>
@@ -186,95 +231,29 @@
             <br>
 
             <div class="main-button text-center">
-                <a href="vacations.php">View Listings</a>
+                <a href="listings.php">View all listings</a>
             </div>
         </div>
     </section>
-    <!-- ***** Cars Ends ***** -->
+    <!-- ***** Featured Homestay Section End ***** -->
 
-    <section class="section section-bg" id="schedule" style="background-image: url(assets/images/about-fullscreen-1-1920x700.jpg)">
+    <!-- ***** About Us Section Start ***** -->
+    <section class="section section-bg" id="schedule" style="background-image: url(assets/images/banner-image-1-1920x500.jpg)">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
                     <div class="section-heading dark-bg">
                         <h2><em>About Us</em></h2>
-                        <img src="assets\images\logoVL1.png" height="450" width="450" alt="">
+                        <img src="assets/images/logoVL1.png" height="450" width="450" alt="">
                         <p>VoyageLux is a pioneering rental platform in Malaysia established by Zen Corp. We specialize in simplifying the rental process for both property owners and renters. Our online platform centralizes rental listings, streamlines the rental process, and enhances transparency and trust in the rental market.
                             <br><br>We aim to make Voyage Lux as an online marketplace and hospitality service platform specifically in Malaysia that allows people to rent homestays. The accommodations listed on our website; instead, it serves as a broker, connecting hosts , individuals who want to rent out their properties, with guests, travelers seeking accommodation.
                         </p>
                     </div>
                 </div>
             </div>
-            <!--<div class="row">
-                <div class="col-lg-12">
-                    <div class="cta-content text-center">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore deleniti voluptas enim! Provident consectetur id earum ducimus facilis, aspernatur hic, alias, harum rerum velit voluptas, voluptate enim! Eos, sunt, quidem.</p>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto nulla quo cum officia laboriosam. Amet tempore, aliquid quia eius commodi, doloremque omnis delectus laudantium dolor reiciendis non nulla! Doloremque maxime quo eum in culpa mollitia similique eius doloribus voluptatem facilis! Voluptatibus, eligendi, illum. Distinctio, non!</p>
-                    </div>
-                </div>
-            </div>-->
         </div>
     </section>
-
-    <!-- ***** Blog Start ***** -->
-    <!--<section class="section" id="our-classes">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 offset-lg-3">
-                    <div class="section-heading">
-                        <h2>Read our <em>Blog</em></h2>
-                        <img src="assets/images/line-dec.png" alt="">
-                        <p>Nunc urna sem, laoreet ut metus id, aliquet consequat magna. Sed viverra ipsum dolor, ultricies fermentum massa consequat eu.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row" id="tabs">
-              <div class="col-lg-4">
-                <ul>
-                  <li><a href='#tabs-1'>Lorem ipsum dolor sit amet, consectetur adipisicing.</a></li>
-                  <li><a href='#tabs-2'>Aspernatur excepturi magni, placeat rerum nobis magnam libero! Soluta.</a></li>
-                  <li><a href='#tabs-3'>Sunt hic recusandae vitae explicabo quidem laudantium corrupti non adipisci nihil.</a></li>
-                  <div class="main-rounded-button"><a href="blog.php">Read More</a></div>
-                </ul>
-              </div>
-              <div class="col-lg-8">
-                <section class='tabs-content'>
-                  <article id='tabs-1'>
-                    <img src="assets/images/blog-image-1-940x460.jpg" alt="">
-                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing.</h4>
-
-                    <p><i class="fa fa-user"></i> John Doe &nbsp;|&nbsp; <i class="fa fa-calendar"></i> 27.07.2020 10:10 &nbsp;|&nbsp; <i class="fa fa-comments"></i>  15 comments</p>
-
-                    <p>Phasellus convallis mauris sed elementum vulputate. Donec posuere leo sed dui eleifend hendrerit. Sed suscipit suscipit erat, sed vehicula ligula. Aliquam ut sem fermentum sem tincidunt lacinia gravida aliquam nunc. Morbi quis erat imperdiet, molestie nunc ut, accumsan diam.</p>
-                    <div class="main-button">
-                        <a href="blog-details.php">Continue Reading</a>
-                    </div>
-                  </article>
-                  <article id='tabs-2'>
-                    <img src="assets/images/blog-image-2-940x460.jpg" alt="">
-                    <h4>Aspernatur excepturi magni, placeat rerum nobis magnam libero! Soluta.</h4>
-                    <p><i class="fa fa-user"></i> John Doe &nbsp;|&nbsp; <i class="fa fa-calendar"></i> 27.07.2020 10:10 &nbsp;|&nbsp; <i class="fa fa-comments"></i>  15 comments</p>
-                    <p>Integer dapibus, est vel dapibus mattis, sem mauris luctus leo, ac pulvinar quam tortor a velit. Praesent ultrices erat ante, in ultricies augue ultricies faucibus. Nam tellus nibh, ullamcorper at mattis non, rhoncus sed massa. Cras quis pulvinar eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                    <div class="main-button">
-                        <a href="blog-details.php">Continue Reading</a>
-                    </div>
-                  </article>
-                  <article id='tabs-3'>
-                    <img src="assets/images/blog-image-3-940x460.jpg" alt="">
-                    <h4>Sunt hic recusandae vitae explicabo quidem laudantium corrupti non adipisci nihil.</h4>
-                    <p><i class="fa fa-user"></i> John Doe &nbsp;|&nbsp; <i class="fa fa-calendar"></i> 27.07.2020 10:10 &nbsp;|&nbsp; <i class="fa fa-comments"></i>  15 comments</p>
-                    <p>Fusce laoreet malesuada rhoncus. Donec ultricies diam tortor, id auctor neque posuere sit amet. Aliquam pharetra, augue vel cursus porta, nisi tortor vulputate sapien, id scelerisque felis magna id felis. Proin neque metus, pellentesque pharetra semper vel, accumsan a neque.</p>
-                    <div class="main-button">
-                        <a href="blog-details.php">Continue Reading</a>
-                    </div>
-                  </article>
-                </section>
-              </div>
-            </div>
-        </div>
-    </section>-->
-    <!-- ***** Blog End ***** -->
+    <!-- ***** About Us Section End ***** -->
 
     <!-- ***** Call to Action Start ***** -->
     <section class="section section-bg" id="call-to-action" style="background-image: url(assets/images/banner-image-1-1920x500.jpg)">
@@ -294,7 +273,7 @@
     </section>
     <!-- ***** Call to Action End ***** -->
 
-    <!-- ***** Testimonials Item Start ***** -->
+    <!-- ***** Testimonials Section Start ***** -->
     <section class="section" id="features">
         <div class="container">
             <div class="row">
@@ -305,7 +284,7 @@
                         <p>Help you to decide whether to make reservations</p>
                     </div>
                 </div>
-                <div class="col-lg-6 | offset-pos">
+                <div class="col-lg-6">
                     <ul class="features-items">
                         <li class="feature-item">
                             <div class="left-icon">
@@ -327,7 +306,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-lg-6 | offset-pos">
+                <div class="col-lg-6">
                     <ul class="features-items">
                         <li class="feature-item">
                             <div class="left-icon">
@@ -358,15 +337,15 @@
             </div>
         </div>
     </section>
-    <!-- ***** Testimonials Item End ***** -->
-    
+    <!-- ***** Testimonials Section End ***** -->
+
     <!-- ***** Footer Start ***** -->
     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <p>
-                        Copyright © 2024 Zen Corporation</a>
+                        Copyright © 2024 Zen Corporation
                     </p>
                 </div>
             </div>
@@ -390,6 +369,5 @@
     
     <!-- Global Init -->
     <script src="assets/js/custom.js"></script>
-
-  </body>
+</body>
 </html>
